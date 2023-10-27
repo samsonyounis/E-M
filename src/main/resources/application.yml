@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: AUTH-SERVICE
+
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/emdb
+    password: sam@1996
+#    database=tra_db;encrypt=true;trustServerCertificate=true;
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+#  ssl:
+#    enabled: true
+#    key-alias: 1
+#    key-store-password: changeit
+#    key-store: classpath:server-keystore.p12
+#    key-store-type: PKCS12
