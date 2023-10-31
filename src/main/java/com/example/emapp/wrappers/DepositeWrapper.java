@@ -9,6 +9,6 @@ import lombok.*;
 @Builder
 public class DepositeWrapper {
     private Long userId;
-    private Long accountNo;
+    private String accountNo;
     private Long amount;
 }

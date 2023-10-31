@@ -64,7 +64,9 @@ public class securityConfig {
                         "/api/v1/users/create",
                         "/api/v1/users/login",
                         "/api/v1/users/getall",
-                        "/api/v1/users/getallAccounts")
+                        "/api/v1/users/getallAccounts",
+                        "/api/v1/users/generate",
+                        "/api/v1/users/getUserById")
                 .permitAll().requestMatchers("/api/v1/users/deposit",
                         "/api/v1/users/withdraw").
                 //"/employee/add"

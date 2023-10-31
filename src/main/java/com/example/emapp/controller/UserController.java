@@ -1,15 +1,11 @@
 package com.example.emapp.controller;
 
-
-import com.example.emapp.models.Users;
-import com.example.emapp.repository.UsersRepository;
 import com.example.emapp.service.AcountsServiceImpl;
 import com.example.emapp.wrappers.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.ParseException;
-import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -25,6 +21,13 @@ public class UserController {
     @GetMapping("/getall")
     public GlobalResponse getAllUsers(){
        return accountsService.getAllUsers();
+    }
+
+
+    @GetMapping("/getUserById")
+    public GlobalResponse getUserById(@RequestParam Long id) {
+
+        return accountsService.getUserById(id);
     }
 
     @GetMapping("/getallAccounts")
@@ -52,5 +55,14 @@ public class UserController {
     @PostMapping("/update")
     public GlobalResponse updateAccount(@RequestBody UpdateaccountWrapper wrapper) {
         return accountsService.updateAccountInfo(wrapper);
+    }
+
+    @PostMapping("/generate")
+    public GlobalResponse generateBankNumber(){
+        String bankNumber = UUID.randomUUID().toString();
+        return GlobalResponse.builder()
+                .status("200")
+                .message("generate bank number")
+                .data(bankNumber).build();
     }
 }

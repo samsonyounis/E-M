@@ -14,8 +14,6 @@ import java.util.Map;
 @Component
 public class jwtUtility implements Serializable {
 
-       // private static final long serialVersionUID = 7008375124389347049L;
-       public static final long TOKEN_VALIDITY = 60 * 60;
         private final String jwtSecret = "SECRET";
         //function to generate jwt token
         public String generateJwtToken(UserDetails userDetails) {
@@ -34,7 +32,7 @@ public class jwtUtility implements Serializable {
         public Boolean validateJwtToken(String token, UserDetails userDetails) {
             String username = getUsernameFromToken(token);
             Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
-            Boolean isTokenExpired = claims.getExpiration().before(new Date());
+            boolean isTokenExpired = claims.getExpiration().before(new Date());
             return (username.equals(userDetails.getUsername()) && !isTokenExpired);
         }
         public String getUsernameFromToken(String token) {

@@ -1,8 +1,6 @@
 package com.example.emapp.service;
 
-import com.example.emapp.models.Users;
 import com.example.emapp.wrappers.*;
-
 import java.text.ParseException;
 
 public interface AccountsServiceInt {
@@ -10,6 +8,7 @@ public interface AccountsServiceInt {
     GlobalResponse createUserAccount(CreateUserWrapper wrapper) throws ParseException;
 
     GlobalResponse getAllUsers();
+    GlobalResponse getUserById(Long id);
 
     GlobalResponse getAllAccounts();
 

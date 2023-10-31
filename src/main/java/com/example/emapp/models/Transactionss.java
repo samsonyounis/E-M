@@ -22,7 +22,8 @@ public class Transactionss {
     private Long id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Africa/Nairobi")
     private Date dateOfTransaction;
-    private Long accountNo;
+    private String accountNo;
+    private Long amountTransacted;
     @Enumerated(EnumType.STRING)
     private TransactionType typeOfTransaction;
     @ManyToOne

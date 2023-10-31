@@ -9,6 +9,6 @@ import lombok.*;
 @Builder
 public class WithdrawWrapper {
     private Long userId;
-    private Long accountNo;
+    private String accountNo;
     private Long amount;
 }
