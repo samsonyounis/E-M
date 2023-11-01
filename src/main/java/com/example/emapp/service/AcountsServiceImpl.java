@@ -12,6 +12,8 @@ import com.example.emapp.securityConfig.userDetailsService;
 import com.example.emapp.wrappers.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ public class AcountsServiceImpl implements AccountsServiceInt{
     private final jwtUtility jwtUtility1;
     private final TransactionsRepository transactionsRepository;
     @Override
+    @CacheEvict(value = "users",allEntries = true)
     public GlobalResponse createUserAccount(CreateUserWrapper wrapper) throws ParseException {
         //build user object
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -50,7 +53,7 @@ public class AcountsServiceImpl implements AccountsServiceInt{
         //Generate values to append to 'KA'
         int n1 = value.nextInt(10);
         int n2 = value.nextInt(10);
-        accountStartValue += Integer.toString(n1) + Integer.toString(n2) + " ";
+        accountStartValue += n1 + n2 + " ";
 
         int count = 0;  int n = 0;
         for(int i =0; i < 12;i++)
@@ -90,7 +93,9 @@ public class AcountsServiceImpl implements AccountsServiceInt{
     }
 
     @Override
+    @Cacheable("users")
     public GlobalResponse getAllUsers() {
+        log.info("loading users from database......");
         List<Users> usersList = usersRepository.findAll();
         return GlobalResponse.builder()
                 .status("200")

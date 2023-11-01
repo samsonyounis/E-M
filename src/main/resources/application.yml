@@ -9,7 +9,7 @@ spring:
 #    database=tra_db;encrypt=true;trustServerCertificate=true;
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
 #  ssl:
