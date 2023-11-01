@@ -42,6 +42,7 @@ public class AcountsServiceImpl implements AccountsServiceInt{
         String accountStartValue = "KA";
 
         //build user object
+
         Users user = Users.builder().email(wrapper.getEmail()).password(passwordEncoder.encode(wrapper.getPassword()))
                 .roles(wrapper.getRoles()).firstName(wrapper.getFirstName())
                 .lastName(wrapper.getLastName()).nationalId(wrapper.getNationalId())
